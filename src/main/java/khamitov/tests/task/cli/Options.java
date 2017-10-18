@@ -1,8 +1,8 @@
 package khamitov.tests.task.cli;
 
-import com.sun.istack.internal.Nullable;
 import org.apache.commons.cli.*;
 
+import javax.annotation.Nullable;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
