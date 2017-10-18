@@ -1,17 +1,19 @@
 package khamitov.tests.task;
 
-import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import khamitov.tests.task.cli.Options;
 import khamitov.tests.task.cli.OptionsException;
 import khamitov.tests.task.csv.PayloadParser;
+import khamitov.tests.task.json.PayloadWriter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
- * Hello world!
+ * CSV to JSON file converter
  *
  */
 public class App 
@@ -24,29 +26,24 @@ public class App
         } catch (OptionsException e) {
             System.out.println("Error: " + e.getMessage());
             e.printHelp();
-
-            System.exit(1);
-        }
-
-        PayloadParser parser = new PayloadParser();
-        MappingIterator<Payload> it;
-
-        try(BufferedReader reader = Files.newBufferedReader(options.getInputFile(), Charset.forName("UTF-8"))) {
-            it = parser.pars(reader);
-        } catch (IOException e) {
-            e.printStackTrace();
-
             System.exit(1);
 
             return;
         }
 
-        try {
-            while (it.hasNextValue()) {
-                System.out.println(it.nextValue().toString());
-            }
+        Path csvPath = options.getInputFile();
+        Path jsonPath = options.getOutputFile();
+        PayloadParser parser = new PayloadParser();
+        PayloadWriter writer = new PayloadWriter((new ObjectMapper()).writer());
+        CsvToJsonConverter converter = new CsvToJsonConverter(parser, writer);
+
+        try(BufferedReader csvReader = Files.newBufferedReader(csvPath, Charset.forName("UTF-8"))) {
+            converter.convert(csvReader, jsonPath);
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
+
+            return;
         }
     }
 }
