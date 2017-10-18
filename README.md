@@ -5,4 +5,4 @@ This is test task
 ./mvnw clean package
 
 ###### Run
-java -jar target/file-converter-1.0-SNAPSHOT.jar --in <input-csv-file> [--out <output-json-file>]
+java -jar target/file-converter-1.0-SNAPSHOT.jar --in {input-csv-file} [--out {output-json-file}]
