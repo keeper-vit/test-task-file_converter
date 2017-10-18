@@ -5,6 +5,7 @@ import khamitov.tests.task.Payload;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ class PayloadParserTest {
         String csv = "123,Jack,Daniels,true\n45,Johnny,Walker,false\n6,John,Jameson,true";
 
         PayloadParser parser = new PayloadParser();
-        MappingIterator<Payload> it = parser.pars(csv);
+        MappingIterator<Payload> it = parser.pars(new StringReader(csv));
 
         List<Payload> data = it.readAll();
 

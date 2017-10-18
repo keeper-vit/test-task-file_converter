@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import khamitov.tests.task.Payload;
 
 import java.io.IOException;
+import java.io.Reader;
 
 /**
  * Created by Vitaliy Kh. <khamitov.vitaliy@filmon.com> on 10/18/17.
@@ -20,7 +21,7 @@ public class PayloadParser {
         schema = mapper.schemaFor(Payload.class);
     }
 
-    public MappingIterator<Payload> pars(String csv) throws IOException {
+    public MappingIterator<Payload> pars(Reader csv) throws IOException {
         return mapper.readerFor(Payload.class).with(schema).readValues(csv);
     }
 }
