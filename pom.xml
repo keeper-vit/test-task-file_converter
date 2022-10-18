@@ -15,7 +15,7 @@
     <junit.jupiter.version>5.0.1</junit.jupiter.version>
     <junit.vintage.version>4.12.1</junit.vintage.version>
     <commons-cli.version>1.4</commons-cli.version>
-    <jackson.version>2.12.1</jackson.version>
+    <jackson.version>2.13.4.1</jackson.version>
     <lombok.version>1.16.18</lombok.version>
     <mockito-core.version>2.11.0</mockito-core.version>
     <jsr305.version>3.0.2</jsr305.version>
